@@ -1,4 +1,4 @@
-Еhis is a docker compose file for setup projects from:
+This is a docker compose file for setup projects from:
   https://github.com/Makstorm/nest-js-device-store.git       and      https://github.com/Makstorm/nest-js-device-store.git
 in docker containers 
 also there ups RabbitMq image for making connectivity between those application
