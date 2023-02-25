@@ -4,4 +4,9 @@ in docker containers.
 Also there ups RabbitMq image for making connectivity between those application
 
 For running this applications run:
-  - docker compose build && docker compose up
+```bash
+#builgin docker images
+$docker compose build 
+#container launch
+$docker compose up
+```
