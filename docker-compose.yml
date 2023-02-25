@@ -1,0 +1,49 @@
+version: '2'
+
+services:
+  rabbitmq: 
+    image: rabbitmq:3.11-management
+    container_name: 'rabbitmq'
+    ports:
+        - 5672:5672
+        - 15672:15672
+
+  notification_ms:
+    build:
+      dockerfile: Dockerfile
+      context: ./notification-microservice
+      # Only will build development stage from our dockerfile
+      target: production
+    volumes:
+      - .:/usr/src/app
+    container_name: notification_ms
+    restart: on-failure
+    env_file:
+      - ./notification-microservice/.env
+    depends_on:
+      - rabbitmq
+    ports:
+        - 3001:3001
+  
+  main_app:
+    build:
+      dockerfile: Dockerfile
+      context: ./fist
+      target: production
+    volumes:
+      - .:/usr/src/app
+    container_name: main_app
+    restart: on-failure
+    env_file:
+      - ./fist/.env
+    depends_on:
+      - notification_ms
+    ports:
+        - 3000:3000
+      
+  
+  
+        
+
+  
+
